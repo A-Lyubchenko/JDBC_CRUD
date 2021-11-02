@@ -61,11 +61,10 @@ public abstract class Commands implements ICommands, ICommandsCrud, IFunctional 
 
     @Override
     public void handle(String param, Consumer<ICommands> iCommandsConsumer) {
-        Matcher matcher = pattern.matcher(param);
-        if (matcher.find()) {
-            String firstWord = matcher.group();
-            String newParams = param.replace(firstWord, "").trim();
-            switch (firstWord) {
+        Optional<String> firstWord = getFirstWorld(param);
+        if (firstWord.isPresent()){
+            String newParams = param.replace(firstWord.get(), "").trim();
+            switch (firstWord.get()) {
                 case "create":
                     create(newParams);
                     return;

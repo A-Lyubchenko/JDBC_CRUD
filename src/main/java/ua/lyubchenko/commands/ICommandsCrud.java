@@ -10,5 +10,5 @@ public interface ICommandsCrud {
     void update(String param);
 
     void delete(String param);
-
 }
+

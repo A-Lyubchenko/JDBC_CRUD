@@ -9,5 +9,6 @@ public interface IFunctional {
     void listOfJavaDevelopers(String param);
 
     void listOfMiddleDevelopers(String param);
+
     void listOfCountDevelopersOnProject(String param);
 }
