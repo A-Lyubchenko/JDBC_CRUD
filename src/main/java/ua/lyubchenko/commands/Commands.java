@@ -16,6 +16,8 @@ public abstract class Commands implements ICommands, ICommandsCrud, IFunctional 
     private final SkillRepository skillRepository = new SkillRepository();
     private final DeveloperRepository developerRepository = new DeveloperRepository();
 
+
+
     @Override
     public void listOfCountDevelopersOnProject(String param) {
         List<String> listOfCountDevelopersWorkingOnProjects = developerRepository.listOfCountDevelopersWorkingOnProjects();

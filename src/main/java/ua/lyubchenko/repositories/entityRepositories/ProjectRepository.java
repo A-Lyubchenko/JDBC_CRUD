@@ -43,7 +43,7 @@ public class ProjectRepository extends EntityRepository<Project> {
 
     @Override
     public void update(Project project) {
-        String sql = String.format("UPDATE FROM %s SET name = ?, start = ?, coast = ? WHERE id = ?", getTableName());
+        String sql = String.format("UPDATE %s SET name = ?, start = ?, coast = ? WHERE id = ?", getTableName());
         sqlHelper.update(sql, preparedStatement -> {
             preparedStatement.setString(1, project.getName());
             preparedStatement.setString(2, project.getStart());

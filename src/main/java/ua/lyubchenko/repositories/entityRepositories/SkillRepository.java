@@ -41,7 +41,7 @@ public class SkillRepository extends EntityRepository<Skill> {
 
     @Override
     public void update(Skill skill) {
-        String sql = String.format("UPDATE FROM %s SET department = ?, level = ? WHERE id = ?", getTableName());
+        String sql = String.format("UPDATE %s SET department = ?, level = ? WHERE id = ?", getTableName());
         sqlHelper.update(sql, preparedStatement -> {
             preparedStatement.setString(1, skill.getDepartment());
             preparedStatement.setString(2, skill.getLevel());

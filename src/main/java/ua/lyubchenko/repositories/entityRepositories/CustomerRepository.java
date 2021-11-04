@@ -41,7 +41,7 @@ public class CustomerRepository extends EntityRepository<Customer> {
 
     @Override
     public void update(Customer customer) {
-        String sql = String.format("UPDATE FROM %s SET name = ?, location = ? WHERE id = ?", getTableName());
+        String sql = String.format("UPDATE  %s SET name = ?, location = ? WHERE id = ?", getTableName());
         sqlHelper.update(sql, preparedStatement -> {
             preparedStatement.setString(1, customer.getName());
             preparedStatement.setString(2, customer.getLocation());

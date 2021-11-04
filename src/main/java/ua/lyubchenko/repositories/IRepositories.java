@@ -13,4 +13,7 @@ public interface IRepositories<T> {
     List<String> getMiddleDevelopers();
 
     List<String> listOfCountDevelopersWorkingOnProjects();
+
+//Для того чтобы создать сущность нужно знать максимальный id. Метод возвращает максимальный ид.
+    Integer getMaxId();
 }

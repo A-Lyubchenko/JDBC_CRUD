@@ -14,7 +14,11 @@ public class DeveloperCommand extends Commands {
     private final DeveloperRepository developerRepository = new DeveloperRepository();
     private final List<String> commands = List.of("\"create\", \"read\", \"update\", \"delete\", \"get\", \"count\"");
 
+    @Override
+    public Integer getMaxId() {
+        return developerRepository.getMaxId();
 
+    }
     public void update(String newParams) {
         String[] split = newParams.split(" ");
         developer.setName(split[0] + " " + split[1] + " " + split[2]);
@@ -51,7 +55,8 @@ public class DeveloperCommand extends Commands {
                 "" + WORD1 + "\"update\"" + WORD2 + "(name age sex phone_number salary id). " +
                 "" + WORD3 + "update Гуськов Ф. Ф. 20 male 9999999999 4000 10\n" + WORD1 + "\"delete\" - вам нужно вести (id). " +
                 "" + WORD3 + "delete 10\n" + WORD1 + "\"get\" - вам нужно ввести (id). " +
-                "" + WORD3 + "get 10\n" + WORD1 + "\"count\" - ничего вводить не нужно, выводится количество сотрудников работающих над проектами, хранящихся в БД.");
+                "" + WORD3 + "get 10\n" + WORD1 + "\"count\" - ничего вводить не нужно, выводится количество сотрудников работающих над проектами, хранящихся в БД." +
+                "\nМаксимальный id \"DEVELOPERS\" - " +getMaxId());
     }
 
     public void read() {

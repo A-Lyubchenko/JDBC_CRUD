@@ -15,7 +15,11 @@ public class CustomerCommand extends Commands {
     private final CustomerRepository customerRepository = new CustomerRepository();
     private final List<String> commands = List.of("\"create\", \"read\", \"update\", \"delete\", \"get\"");
 
+    @Override
+    public Integer getMaxId() {
+        return customerRepository.getMaxId();
 
+    }
     @Override
     public void update(String param) {
         String[] words = param.split(" ");
@@ -49,7 +53,7 @@ public class CustomerCommand extends Commands {
                 "" + WORD1 + "\"update\"" + WORD2 + "(name location id). " +
                 "" + WORD3 + "update BBC California 10\n" + WORD1 + "\"delete\" - вам нужно вести (id). " +
                 "" + WORD3 + "delete 10\n" + WORD1 + "\"get\" - вам нужно ввести (id). " +
-                "" + WORD3 + "get 10");
+                "" + WORD3 + "get 10\nМаксимальный id \"CUSTOMERS\" - " +getMaxId());
     }
 
     @Override

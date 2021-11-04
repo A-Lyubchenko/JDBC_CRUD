@@ -5,6 +5,7 @@ import lombok.val;
 import lombok.var;
 import ua.lyubchenko.connection.ISqlHelper;
 import ua.lyubchenko.connection.SqlHelper;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,25 @@ public abstract class EntityRepository<T extends Identity> implements ICrud<T>, 
                 resultSet.getString("count");
     }
 
+    @SneakyThrows
+    private Integer setNameOfMaxId(ResultSet resultSet) {
+        return resultSet.getInt("max");
+    }
+
+    @Override
+    public Integer getMaxId() {
+        AtomicReference<Integer> maxId = new AtomicReference<>(0);
+        String sql = String.format("SELECT MAX(id) FROM %s", getTableName());
+        sqlHelper.query(sql, preparedStatement -> {
+            val resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                maxId.set(setNameOfMaxId(resultSet));
+            }
+            System.out.println("MAX ID WAS COMPLETED");
+        });
+        return maxId.get();
+    }
+
     @Override
     public List<String> listOfCountDevelopersWorkingOnProjects() {
         List<String> developersList = new ArrayList<>();
@@ -60,7 +80,7 @@ public abstract class EntityRepository<T extends Identity> implements ICrud<T>, 
     public List<String> getMiddleDevelopers() {
         List<String> developersList = new ArrayList<>();
         String sql = "SELECT developers.name\n" +
-        "FROM developer_skill\n" +
+                "FROM developer_skill\n" +
                 "INNER JOIN developers ON developer_skill.developer_id = developers.id\n" +
                 "INNER JOIN skills ON developer_skill.skill_id = skills.id\n" +
                 "WHERE skills.level = 'Middle'\n" +
@@ -152,7 +172,7 @@ public abstract class EntityRepository<T extends Identity> implements ICrud<T>, 
     @Override
     public void delete(int id) {
         String sql = String.format("DELETE FROM %s WHERE id = ?", getTableName());
-        sqlHelper.query(sql, preparedStatement -> {
+        sqlHelper.update(sql, preparedStatement -> {
             preparedStatement.setInt(1, id);
         });
         System.out.println("DELETE WAS COMPLETED");

@@ -15,7 +15,11 @@ public class SkillCommand extends Commands {
     private final SkillRepository skillRepository = new SkillRepository();
     private final List<String> commands = List.of("\"create\", \"read\", \"update\", \"delete\", \"get\", \"java\", \"middle\"");
 
+    @Override
+    public Integer getMaxId() {
+        return skillRepository.getMaxId();
 
+    }
     public void update(String param) {
         String[] words = param.split(" ");
         skill.setDepartment(words[0]);
@@ -47,7 +51,8 @@ public class SkillCommand extends Commands {
                 "" + WORD3 + "update JS Senior 10\n" + WORD1 + "\"delete\" - вам нужно вести (id). " +
                 "" + WORD3 + "delete 10\n" + WORD1 + "\"get\" - вам нужно ввести (id). " +
                 "" + WORD3 + "get 10\n" + WORD1 + "\"java\" - ничего вводить не нужно, выводится список сотрудников владеющих языком \"Java\", хранящихся в БД.\n" +
-                ""+WORD1+"\"middle\" - ничего вводить не нужно, выводится список сотрудников уровня \"middle\", хранящихся в БД.");
+                ""+WORD1+"\"middle\" - ничего вводить не нужно, выводится список сотрудников уровня \"middle\", хранящихся в БД." +
+                "\nМаксимальный id \"SKILLS\" - " +getMaxId());
     }
 
     public void read() {

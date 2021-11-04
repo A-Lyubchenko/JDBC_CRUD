@@ -11,4 +11,7 @@ public interface IFunctional {
     void listOfMiddleDevelopers(String param);
 
     void listOfCountDevelopersOnProject(String param);
+
+
+    Integer getMaxId();
 }

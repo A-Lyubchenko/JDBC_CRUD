@@ -15,7 +15,11 @@ public class ProjectCommand extends Commands {
     private final List<String> commands = List.of("\"create\", \"read\", \"update\", \"delete\", \"get\", \"sum\", \"list\"");
 
 
+    @Override
+    public Integer getMaxId() {
+        return projectRepository.getMaxId();
 
+    }
     public void update(String param) {
         String[] words = param.split(" ");
         project.setName(words[0]);
@@ -50,7 +54,7 @@ public class ProjectCommand extends Commands {
                 "" + WORD3 + "delete 10\n" + WORD1 + "\"get\" - вам нужно ввести (id). " +
                 "" + WORD3 + "get 10\n" + WORD1 + "\"sum\" - вам нужно ввести (name-(названия проекта хранящихся в БД)). " +
                 "" + WORD3 + "sum Telegram\n" + WORD1 + "\"list\" - вам нужно ввести (name-(названия проекта хранящихся в БД)). " +
-                "" + WORD3 + "list Viber");
+                "" + WORD3 + "list Viber.\nМаксимальный id \"PROJECTS\" - " +getMaxId());
     }
 
     public void read() {

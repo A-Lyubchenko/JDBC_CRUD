@@ -39,7 +39,7 @@ public class CompanyRepository extends EntityRepository<Company> {
 
     @Override
     public void update(Company company) {
-        String sql = String.format("UPDATE FROM %s SET name = ?, location = ? WHERE id = ?", getTableName());
+        String sql = String.format("UPDATE %s SET name = ?, location = ? WHERE id = ?", getTableName());
         sqlHelper.update(sql, preparedStatement -> {
             preparedStatement.setString(1, company.getName());
             preparedStatement.setString(2, company.getLocation());
