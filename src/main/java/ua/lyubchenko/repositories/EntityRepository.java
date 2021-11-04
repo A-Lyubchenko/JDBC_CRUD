@@ -5,8 +5,6 @@ import lombok.val;
 import lombok.var;
 import ua.lyubchenko.connection.ISqlHelper;
 import ua.lyubchenko.connection.SqlHelper;
-import ua.lyubchenko.domains.Skill;
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

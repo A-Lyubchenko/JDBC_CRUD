@@ -1,6 +1,5 @@
 package ua.lyubchenko.commands;
 
-import java.util.Optional;
 import java.util.regex.Matcher;
 
 import static ua.lyubchenko.commands.ICommands.pattern;
